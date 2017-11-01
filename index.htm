@@ -251,14 +251,20 @@ function sortList(flag){
 function showResult() {
 	var ranking = 1;
 	var sameRank = 1;
-	var str = "";
-	var i;
-
-	str += "<table style=\"width:200px; font-size:12px; line-height:120%; margin-left:auto; margin-right:auto; border:1px solid #000; border-collapse:collapse\" align=\"center\">";
-	str += "<tr><td style=\"color:#ffffff; background-color:#000; text-align:center;\">Rank<\/td><td style=\"color:#ffffff; background-color:#000; text-align:center;\">Character<\/td><\/tr>";
-
-	for (i=0; i<namMember.length; i++) {
-		str += "<tr><td style=\"border:1px solid #000; text-align:right; padding-right:5px;\">"+ranking+"<\/td><td style=\"border:1px solid #000; padding-left:5px;\">"+namMember[lstMember[0][i]]+"<\/td><\/tr>";
+	var table = document.createElement("table");
+	table.className = "results";
+	
+	var thead = table.appendChild(document.createElement("thead"));
+	var row = thead.insertRow(-1);
+	row.appendChild(document.createElement("th")).textContent = "Rank";
+	row.appendChild(document.createElement("td")).textContent = "Character";
+	
+	var tbody = table.appendChild(document.createElement("tbody"));
+	for (var i=0; i<namMember.length; i++) {
+		row = tbody.insertRow(-1);
+		row.appendChild(document.createElement("th")).textContent = ranking;
+		row.appendChild(document.createElement("td")).textContent = namMember[lstMember[0][i]];
+		
 		if (i<namMember.length-1) {
 			if (equal[lstMember[0][i]]==lstMember[0][i+1]) {
 				sameRank++;
@@ -268,20 +274,17 @@ function showResult() {
 			}
 		}
 	}
-	str += "<\/table>";
 
-	document.getElementById("resultField").innerHTML = str;
+	var container = document.getElementById("resultField");
+	container.innerHTML = "";
+	container.appendChild(table);
 }
 
 //Indicates two elements to compare+++++++++++++++++++++++++++++++++++
 function showImage() {
-	var str0 = "Battle No."+numQuestion+"<br>"+Math.floor(finishSize*100/totalSize)+"% sorted.";
-	var str1 = ""+toNameFace(lstMember[cmp1][head1]);
-	var str2 = ""+toNameFace(lstMember[cmp2][head2]);
-
-	document.getElementById("battleNumber").innerHTML = str0;
-	document.getElementById("leftField").innerHTML = str1;
-	document.getElementById("rightField").innerHTML = str2;
+	document.getElementById("battleNumber").innerHTML = "Battle No."+numQuestion+"<br>"+Math.floor(finishSize*100/totalSize)+"% sorted.";
+	document.getElementById("leftField").textContent = toNameFace(lstMember[cmp1][head1]);
+	document.getElementById("rightField").textContent = toNameFace(lstMember[cmp2][head2]);
 
 	numQuestion++;
 }
@@ -300,75 +303,95 @@ function toNameFace(n){
 }
 </script>
 <style type="text/css">
-#mainTable{
-	font-size: 16px;
-	font-family: 'MS PGothic',sans-serif;
+body {
 	text-align: center;
+}
+#mainTable {
+	font-size: 16px;
 	vertical-align: middle;
-	width: 410px;
 	margin-left: auto;
 	margin-right: auto;
 	border-collapse: separate;
 	border-spacing: 10px 5px;
 }
-#leftField{
-	width: 120px;
+#battleNumber {
+	padding-bottom: 10px;
+}
+#leftField,
+#rightField {
+	width: 200px;
 	height: 150px;
 	border: 1px solid #000;
 	cursor: pointer;
 }
-#rightField{
-	width: 120px;
-	height: 150px;
-	border: 1px solid #000;
-	cursor: pointer;
-}
-.middleField{
+.middleField {
 	width: 120px;
 	height: 70px;
 	border: 1px solid #000;
 	cursor: pointer;
 }
-a{
+a {
 	color: #174;
 	text-decoration : none;
 }
-a:hover{
+a:hover {
 	color: #6b9;
 }
 body {
 	width: 600px;
 	margin: 0 auto;
 }
+table.results {
+	width:200px;
+	font-size:12px;
+	line-height:120%;
+	margin-left:auto;
+	margin-right:auto;
+	border:1px solid #000;
+	border-collapse:collapse;
+}
+
+table.results thead td,
+table.results thead th {
+	color:#ffffff;
+	background-color:#000;
+	text-align: center;
+}
+table.results td,
+table.results th {
+	border: 1px solid #000;
+	padding: 0 5px;
+}
+table.results th {
+	text-align: right;
+	font-weight: normal;
+}
+
 </style>
 </head>
 <body>
 	
-<p class="instructions" style="text-align:center;">
+<p class="instructions">
 	My Little Pony character sorter. Choose your favorite character out of the two shown to get a list of your favorite characters as calculated by this character sorter. <br/><br/>
 	<a href="http://www.reddit.com/r/mylittlepony/comments/18rpyp/get_ready_to_make_some_tough_choices/c8hjwz1" target="_blank">Hi r/MyLittlePony! &lt;3</a> <br/><br/>
 	Copied from <a href="https://web.archive.org/web/20160305122402/http://tylian.net/sort/pony.html">the Wayback Machine</a> by <a href="https://twitter.com/FlynnMLP">FlynnMLP</a>.
 </p>
 
-<table id="mainTable" align="center">
+<table id="mainTable">
 	<tbody><tr>
-		<td id="battleNumber" colspan="3" style="padding-bottom: 10px;" style="text-align:center;">Battle No.1<br>0% sorted.</td>
+		<td id="battleNumber" colspan="3">Battle No.1<br>0% sorted.</td>
 	</tr>
 	<tr>
-		<td id="leftField" onclick="if(finishFlag==0) sortList(-1);" rowspan="2" style="text-align:center;"></td>
-		<td class="middleField" onclick="if(finishFlag==0) sortList(0);" style="text-align:center;">
-			I Like Both
-		</td>
-		<td id="rightField" onclick="if(finishFlag==0) sortList(1);" rowspan="2" style="text-align:center;"></td>
+		<td id="leftField" onclick="if(finishFlag==0) sortList(-1);" rowspan="2"></td>
+		<td class="middleField" onclick="if(finishFlag==0) sortList(0);">I Like Both</td>
+		<td id="rightField" onclick="if(finishFlag==0) sortList(1);" rowspan="2"></td>
 	</tr>
 	<tr>
-		<td class="middleField" onclick="if(finishFlag==0) sortList(0);" style="text-align:center;">
-			No Opinion
-		</td>
+		<td class="middleField" onclick="if(finishFlag==0) sortList(0);">No Opinion</td>
 	</tr>
 </tbody></table>
 <br><br>
-<div id="resultField" style="text-align: center;">
+<div id="resultField">
 <br><br>
 </div>
 <script type="text/javascript">
