@@ -1,0 +1,431 @@
+<!doctype HTML>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>My Little Pony Favorite Video Sorter</title>
+<script type="text/javascript">
+var namMember = [
+  "<a href=\"https://www.youtube.com/watch?v=cGdn7wONOJE\">Starlight and the strange castle [Animation]</a> by AgrolChannel (Jan #1)",
+  "<a href=\"https://www.youtube.com/watch?v=pepWxrTh1O8\">\"Spare\" animation</a> by StasySolitude (Jan #2)",
+  "<a href=\"https://www.youtube.com/watch?v=KV5khFRFbCk\">Bronies React: Season 6 Finale</a> by ACRacebest (Jan #3)",
+  "<a href=\"https://www.youtube.com/watch?v=D2C_fKzmdmA\">Mentally Advanced Series: Season  -2 Ep  -2</a> by Dawn Somewhere (Jan #4)",
+  "<a href=\"https://www.youtube.com/watch?v=EiESPikkbCA\">Mirage</a> by Crowne Prince (Jan #5)",
+  "<a href=\"https://www.youtube.com/watch?v=LtFgy7oNvBc\">Totally Legit Recap: Equestria Girls (Part 2)</a> by DWK (Jan #6)",
+  "<a href=\"https://www.youtube.com/watch?v=el3WrBVOJoc\">Ghost reacts to True Capitalist Radio being in The Top Ten Pony Videos of December 2016</a> by Twilie Atkins (Jan #7)",
+  "<a href=\"https://www.youtube.com/watch?v=SUANQOGf0ZU\">My Lego Pony: Easy dream (animation)</a> by AlStiff (Jan #8)",
+  "<a href=\"https://www.youtube.com/watch?v=cdbbmZL7aNM\">Moana meets My Little Pony</a> by ToucanLDM (Jan #9)",
+  "<a href=\"https://www.youtube.com/watch?v=KCQ61hW-Gk4\">Catch a Falling Star ~MLP Animation~</a> by Lunar Cakez (Jan #10)",
+  "<a href=\"https://www.youtube.com/watch?v=ncbzSkOa_hU\">MLP:FIM [Animation] \"Metal Gear Friendship\"</a> by BrutalWeather (Feb #1)",
+  "<a href=\"https://www.youtube.com/watch?v=r5lUyUgOVO8\">Totally Legit Recap: Rainbow Rocks Shorts</a> by DWK (Feb #2)",
+  "<a href=\"https://www.youtube.com/watch?v=nnKC3ruSIR8\">Pinkie Promise [Animation]</a> by Tridashie (Feb #3)",
+  "<a href=\"https://www.youtube.com/watch?v=XyzMYYCegqw\">My Chibi Pony: War of the sisters</a> by AlStiff (Feb #4)",
+  "<a href=\"https://www.youtube.com/watch?v=yRjh_XYCr8U\">\"CAN'T STOP THE FEELING\" (Sung In MLP Voices)</a> by EileMonty (Feb #5)",
+  "<a href=\"https://www.youtube.com/watch?v=C6K9iaBbdAU\">4chan Cup: /mlp/</a> by Dawn Somewhere (Feb #6)",
+  "<a href=\"https://www.youtube.com/watch?v=7PITyFKe1rA\">“Fight Song” (Sung in MLP Voices) PMV</a> by Magpiepony (Feb #7)",
+  "<a href=\"https://www.youtube.com/watch?v=RyHGvyvRkjc\">Closer [PMV] [Collab]</a> by SnowT (Feb #8)",
+  "<a href=\"https://www.youtube.com/watch?v=SPG60e4LBZQ\">Anatomy of a Brony (Ponycon Short)</a> by Piemations (Feb #9)",
+  "<a href=\"https://www.youtube.com/watch?v=NKRa7vor63c\">Celestias advice  [ANIMATION]</a> by Alumx (Feb #10)",
+  "<a href=\"https://www.youtube.com/watch?v=fmdW8pk79iM\">Fluffle Puff Tales: \"Electric Floofaloo\"</a> by Fluffle Puff (Mar #1)",
+  "<a href=\"https://www.youtube.com/watch?v=Z2F6OKQu4JI\">La Da Dee (PMV) - Collab ft. Heir-Of-Rick - COMPLETE</a> by TheeLinker (Mar #2)",
+  "<a href=\"https://www.youtube.com/watch?v=C6PPzcFRy6g\">When you're a filly [Animation]</a> by AgrolChannel (Mar #3)",
+  "<a href=\"https://www.youtube.com/watch?v=mDzd1PdNliY\">How to Summon Twilight [Animation]</a> by Tridashie (Mar #4)",
+  "<a href=\"https://www.youtube.com/watch?v=NP3Ld4llTv4\">Two Best Sisters Replay - Assassin's Creed: Brotherhood</a> by 2Snacks (Mar #5)",
+  "<a href=\"https://www.youtube.com/watch?v=_JGRXSPRMmM\">Different view of reality [animation]</a> by killme2paza (Mar #6)",
+  "<a href=\"https://www.youtube.com/watch?v=2b56tUUgCaY\">Bloopers 2.0 [100K Sub]</a> by Argodaemon (Mar #7)",
+  "<a href=\"https://www.youtube.com/watch?v=cu7-oOfz1GQ\">Who Killed Santa? - Danganronpa: Trigger Happy Horses - Full Animation (PARODY)</a> by Viva Reverie (Mar #8)",
+  "<a href=\"https://www.youtube.com/watch?v=tqDtbtUOXqg\">Breakfast Burrito- A Sonata Music Video</a> by ShadesofEverfree (Mar #9)",
+  "<a href=\"https://www.youtube.com/watch?v=9XOr9Wecesk\">[SFM] My Indian pony \"I Believe In Love\" [PMV]</a> by EverFree Team (Mar #10)",
+  "<a href=\"https://www.youtube.com/watch?v=wqvTGbdPK-o\">Pony Girl</a> by Tridashie (Apr #1)",
+  "<a href=\"https://www.youtube.com/watch?v=BHdPUT2q2y8\">Something about the princesses</a> by ForgaLorga (Apr #2)",
+  "<a href=\"https://www.youtube.com/watch?v=jwh5v2WnzGE\">Fireflies | PMV Collab</a> by The Collaboratory (Apr #3)",
+  "<a href=\"https://www.youtube.com/watch?v=4RE_x2kQoyA\">Two Best Sisters Play - Skyrim</a> by ☆НеаДекват Animations☆ (Apr #4)",
+  "<a href=\"https://www.youtube.com/watch?v=EZf_3Qd7Tw4\">Goodbye My Friend (Pony Animation)</a> by Ponies In Reverse (Apr #5)",
+  "<a href=\"https://www.youtube.com/watch?v=3S92Sf-673A\">Totally Legit Recap: Rainbow Rocks (Part 1)</a> by DWK (Apr #6)",
+  "<a href=\"https://www.youtube.com/watch?v=Tl4XdnTOxl0\">The Rock (From: The Weed)</a> by Equestrian Airship Productions (Apr #7)",
+  "<a href=\"https://www.youtube.com/watch?v=Dsa9JPebU30\">Fruitless Efforts</a> by Argodaemon (Apr #8)",
+  "<a href=\"https://www.youtube.com/watch?v=FckdpzZLhs4\">Home [PMV Collab]</a> by PonyTimeRush Collab (Apr #9)",
+  "<a href=\"https://www.youtube.com/watch?v=MkTTOQlcbVg\">The River - MLP in Real Life Music Video</a> by StormXF3 (Apr #10)",
+  "<a href=\"https://www.youtube.com/watch?v=5kQ9Cgo4qTs\">RolePonies</a> by OmegaOzone (May #1)",
+  "<a href=\"https://www.youtube.com/watch?v=ENs7lmicNfA\">Sunlight</a> by CaptainHoers (May #2)",
+  "<a href=\"https://www.youtube.com/watch?v=sZjLNGpo00w\">Mentally Advanced Series: Season  -2 Ep  -3</a> by Dawn Somewhere (May #3)",
+  "<a href=\"https://www.youtube.com/watch?v=8kbjLSm_2Xw\">Twidash Can Can</a> by Tridashie (May #4)",
+  "<a href=\"https://www.youtube.com/watch?v=W_XReVC7Iec\">Starlight likes kites! (unexpected)</a> by ToucanLDM (May #5)",
+  "<a href=\"https://www.youtube.com/watch?v=y0MkI4Aw6_Y\">Totally Legit Recap: \"Parental Glideance\" Season 7 Episode 7</a> by DWK (May #6)",
+  "<a href=\"https://www.youtube.com/watch?v=Wr0sm1MnWok\">My Little Pony: Scootertrix the Abridged: Episode 22</a> by Scootertrix Studios (May #7)",
+  "<a href=\"https://www.youtube.com/watch?v=cb-gd2K6UiE\">Lemme Smash - Pony Edition</a> by tiarawhy (May #8)",
+  "<a href=\"https://www.youtube.com/watch?v=AV4dZqmVoqs\">Samurai Applejack - Samurai Jack x My Little Pony Mash Up - Humphrey Dumpty</a> by Humphrey Dumpty (May #9)",
+  "<a href=\"https://www.youtube.com/watch?v=1MoXRJxW_6I\">Pinkie Tales: Egghead and the Beast</a> by Magpiepony (May #10)",
+  "<a href=\"https://www.youtube.com/watch?v=6VhZp6sJsCQ\">MLP:FIM [Animation] \"A Little Incident\"</a> by BrutalWeather (Jun #1)",
+  "<a href=\"https://www.youtube.com/watch?v=_YMBoDcdRd4\">Anthropology \"ANIMATED PMV\"</a> by Derek pony (Jun #2)",
+  "<a href=\"https://www.youtube.com/watch?v=tFoGyysBVsU\">Bronies React: Season 7 Premiere</a> by ACRacebest (Jun #3)",
+  "<a href=\"https://www.youtube.com/watch?v=gz6iI_mtagI\">Totally Legit Recap: \"A Royal Problem\" Season 7 Episode 10</a> by DWK (Jun #4)",
+  "<a href=\"https://www.youtube.com/watch?v=Rw9BN8Is5tA\">Fluffle Puff Tales: \"Poptart\"</a> by Fluffle Puff (Jun #5)",
+  "<a href=\"https://www.youtube.com/watch?v=Tgi6rOgX9PI\">'Questria -One</a> by Antony C (Jun #6)",
+  "<a href=\"https://www.youtube.com/watch?v=_uICMn8OI0g\">The Nap (MLP in real life)</a> by StormXF3 (Jun #7)",
+  "<a href=\"https://www.youtube.com/watch?v=YTBHZtv-jQA\">MLP - Mechanical Girl - Voltaire - Animation</a> by NyLab (Jun #8)",
+  "<a href=\"https://www.youtube.com/watch?v=cqCxWrWtCqM\">Friendship is Manly: Phantom Friendship</a> by kanashiipanda (Jun #9)",
+  "<a href=\"https://www.youtube.com/watch?v=fREFHV0gyic\">Detective Lyra</a> by TheRedAceOfSpades (Jun #10)",
+  "<a href=\"https://www.youtube.com/watch?v=IJZ-W6k5njs\">Have fun together [Animation]</a> by AgrolChannel (Jul #1)",
+  "<a href=\"https://www.youtube.com/watch?v=s0ecUWTPTcE\">Starlight wants your Cutie Mark</a> by ForgaLorga (Jul #2)",
+  "<a href=\"https://www.youtube.com/watch?v=M3NdzU3c7hE\">[Animation PMV] Rainbow Chandelier</a> by Sαɱ Studio (Jul #3)",
+  "<a href=\"https://www.youtube.com/watch?v=dZCq1_tKz3U\">Trap of mind (animation)</a> by AlStiff (Jul #4)",
+  "<a href=\"https://www.youtube.com/watch?v=mzkwAv6Cbt4\">Two Best Sisters Play - Fallout 4</a> by 2Snacks (Jul #5)",
+  "<a href=\"https://www.youtube.com/watch?v=vehHIfbzhts\">My Tiny Pony</a> by doubleWbrothers (Jul #6)",
+  "<a href=\"https://www.youtube.com/watch?v=j4C8HywUFmo\">Sailor Moon meets My Little Pony (1/2)</a> by ToucanLDM (Jul #7)",
+  "<a href=\"https://www.youtube.com/watch?v=ZDEtbm9-2UM\">Royal vacations [ANIMATION]</a> by Alumx (Jul #8)",
+  "<a href=\"https://www.youtube.com/watch?v=QoRlSwz5nSs\">Pinkie Tales: Raripunzel</a> by Magpiepony (Jul #9)",
+  "<a href=\"https://www.youtube.com/watch?v=6-KEOdeTbI0\">'Questria -Two</a> by Antony C (Jul #10)",
+  "<a href=\"https://www.youtube.com/watch?v=bIMLs5KsO60\">PONIES The Anthology VI</a> by ZephyrStar (Aug #1)",
+  "<a href=\"https://www.youtube.com/watch?v=573zsc6ZuhQ\">Nepotism Adventure Series, Part 1: Taxes</a> by Dawn Somewhere (Aug #2)",
+  "<a href=\"https://www.youtube.com/watch?v=971RCecaZP8\">My Little Pony in The Sims - Episode 5 - Pinkie Pie's House Party</a> by Yudhaikeledai (Aug #3)",
+  "<a href=\"https://www.youtube.com/watch?v=lOmxpwNwhj4\">Picture This</a> by DeadlyComics (Aug #4)",
+  "<a href=\"https://www.youtube.com/watch?v=jDrLIXtpBrQ\">Cast Away (MLP in real life)</a> by StormXF3 (Aug #5)",
+  "<a href=\"https://www.youtube.com/watch?v=5FrY_fjcPcQ\">Bronies Stamp the Ground</a> by Lightning Bliss (Aug #6)",
+  "<a href=\"https://www.youtube.com/watch?v=8kvWWOHL7Cg\">[SFM Ponies] Lone Digger</a> by Yaasho (Aug #7)",
+  "<a href=\"https://www.youtube.com/watch?v=6nFjZTrEKEI\">Shelter [PMV]</a> by Jack DC 93 (Aug #8)",
+  "<a href=\"https://www.youtube.com/watch?v=s-AQMaMPsWw\">[HORSE] Celestial Advice (Season 7 Premiere)</a> by DoodledPony (Aug #9)",
+  "<a href=\"https://www.youtube.com/watch?v=hZnLyrhS3yc\">'Questria -Three</a> by Antony C (Aug #10)",
+  "<a href=\"https://www.youtube.com/watch?v=ygVDbO6gH5g\">It's hard to be a princess [Animation]</a> by AgrolChannel (Sep #1)",
+  "<a href=\"https://www.youtube.com/watch?v=18tWAkwuOqc\">Austraeoh</a> by Argodaemon (Sep #2)",
+  "<a href=\"https://www.youtube.com/watch?v=yxojnfbMaIM\">Bronies React: A Royal Problem (Season 7 Episode 10)</a> by ACRacebest (Sep #3)",
+  "<a href=\"https://www.youtube.com/watch?v=y-yhO3zN3Tw\">Boop (MLP in real life)</a> by StormXF3 (Sep #4)",
+  "<a href=\"https://www.youtube.com/watch?v=JFgH1eQomy0\">PMV - Lollipop (A Collaborative Animation)</a> by Ponies In Reverse (Sep #5)",
+  "<a href=\"https://www.youtube.com/watch?v=5pcCX7904d4\">Friendship is Musical | Season 5 (First Half)</a> by Tridashie (Sep #6)",
+  "<a href=\"https://www.youtube.com/watch?v=6YgqXCoEVqw\">Fly Like You [SFM]</a> by Bench Thief Productions (Sep #7)",
+  "<a href=\"https://www.youtube.com/watch?v=qNnxPo4S6J4\">Friendship Rocks: Episode 1 | Introductions</a> by itsannachloem (Sep #8)",
+  "<a href=\"https://www.youtube.com/watch?v=_e0AquS5KwA\">Season 8 Hascon MLP Animated Paper Ponies Style</a> by Yoshi Greenwater (Sep #9)",
+  "<a href=\"https://www.youtube.com/watch?v=cmC-OF_Tmyg\">Rick and Morty [ SFM/MLP ]</a> by TheRedAceOfSpades (Sep #10)",
+  "<a href=\"https://www.youtube.com/watch?v=--eAjuzw-_o\">Two Best Sisters Play - Friday the 13th</a> by 2Snacks (Oct #1)",
+  "<a href=\"https://www.youtube.com/watch?v=xrngcNy_tnw\">Luna's Determination | MLP:FiM Fan Music Animation</a> by Minty Root (Oct #2)",
+  "<a href=\"https://www.youtube.com/watch?v=YgVyN3J4CiU\">Everyone loves Princess Luna</a> by ForgaLorga (Oct #3)",
+  "<a href=\"https://www.youtube.com/watch?v=dtcY9NRYjEs\">My Tiny Pony - Pinkie Pie</a> by doubleWbrothers (Oct #4)",
+  "<a href=\"https://www.youtube.com/watch?v=WvDx5o1h9Wo\">Luna Plays X-Pony Equestria Unknown, Episode 1 (Animation)</a> by Yudhaikeledai (Oct #5)",
+  "<a href=\"https://www.youtube.com/watch?v=yOT9WR_LciE\">Friendship is Musical | Season 5 (Second Half) [+Updates]</a> by Tridashie (Oct #6)",
+  "<a href=\"https://www.youtube.com/watch?v=ugWu0JJTSgQ\">Beach Vacation (MLP in real life)</a> by StormXF3 (Oct #7)",
+  "<a href=\"https://www.youtube.com/watch?v=WNWlwtREawc\">Different Life of Guardian [First person animation]</a> by killme2paza (Oct #8)",
+  "<a href=\"https://www.youtube.com/watch?v=P-pZNjme5po\">[SFM PMV] Vinyl Scratch - All About That Bass</a> by VocalScorePony (Oct #9)",
+  "<a href=\"https://www.youtube.com/watch?v=N8OOuFG9tVU\">Spike Gets SPOOKED</a> by DeadlyComics (Oct #10)",
+  "<a href=\"https://www.youtube.com/watch?v=K8-ySXSUOTk\">Look back: Season 7 [Animation]</a> by AgrolChannel (Nov #1)",
+  "<a href=\"https://www.youtube.com/watch?v=ktPppIlq3mo\">(PMV) Dream Of You - Animation</a> by Dark Gloones (Nov #2)",
+  "<a href=\"https://www.youtube.com/watch?v=FGRVptY-fVs\">Nepotism Adventure Series, Part 2: The Mayor</a> by Dawn Somewhere (Nov #3)",
+  "<a href=\"https://www.youtube.com/watch?v=Un1KqWF0euw\">MLP Animation: Paper KP Pony (A Super Mario Brothers Parody)</a> by ILoveKimPossibleAlot (Nov #4)",
+  "<a href=\"https://www.youtube.com/watch?v=oF2c_inQW3o\">Totally Legit Recap: \"It Isn't the Mane Thing About You\" Season 7 Episode 19</a> by DWK (Nov #5)",
+  "<a href=\"https://www.youtube.com/watch?v=OnIIGRYZsqw\">A Real Taco \"EQG ANIMATION\"</a> by Derek pony (Nov #6)",
+  "<a href=\"https://www.youtube.com/watch?v=tXPRze3cR6E\">Bronymonster's Big Bold Bouncing Birthday Bashapaloozaversary</a> by Rock29Roll [Comic Auzi] (Nov #7)",
+  "<a href=\"https://www.youtube.com/watch?v=Jz7JPRlulPs\">Sweetie Belle's Dream</a> by EDplus777 (Nov #8)",
+  "<a href=\"https://www.youtube.com/watch?v=peqvUTkC88w\">Being Derpy Hooves</a> by Yoshi Greenwater (Nov #9)",
+  "<a href=\"https://www.youtube.com/watch?v=t-WeDPdyBcc\">The Pony who Doesn't Like Apples [SFM Ponies]</a> by TheRedAceOfSpades (Nov #10)",
+  "<a href=\"https://www.youtube.com/watch?v=ynyZ5F5aQN0\">Your little cat</a> by ForgaLorga (Dec #1)",
+  "<a href=\"https://www.youtube.com/watch?v=gq3Hcb9AUPM\">Lyra Fatali</a> by Argodaemon (Dec #2)",
+  "<a href=\"https://www.youtube.com/watch?v=SyVt4N1c8Ww\">Applejack's Friendship Quest (MLP in real life)</a> by StormXF3 (Dec #3)",
+  "<a href=\"https://www.youtube.com/watch?v=229KJY0U9gg\">Bronies 2017</a> by daspacepony (Dec #4)",
+  "<a href=\"https://www.youtube.com/watch?v=kNtfXKyO_5M\">My lego pony: Tie pilot</a> by AlStiff (Dec #5)",
+  "<a href=\"https://www.youtube.com/watch?v=eAAQa24YdIk\">Bronies React: The Perfect Pear (Season 7 Episode 13)</a> by ACRacebest (Dec #6)",
+  "<a href=\"https://www.youtube.com/watch?v=FRV-kit6gSw\">It's A Derpy Life</a> by Yoshi Greenwater (Dec #7)",
+  "<a href=\"https://www.youtube.com/watch?v=_7uHghtNZyA\">Sailor Moon meets My Little Pony (2/2)</a> by ToucanLDM (Dec #8)",
+  "<a href=\"https://www.youtube.com/watch?v=sNL9IBbrW-I\">The Second Day of Chrasmas</a> by Viva Reverie (Dec #9)",
+  "<a href=\"https://www.youtube.com/watch?v=XUBHl76UeRc\">Christmas Tree [PMV] [Animation]</a> by SnowT (Dec #10)"
+];
+
+//*********************************************************
+
+var lstMember = new Array();
+var parent = new Array();
+var equal = new Array();
+var rec = new Array();
+var cmp1,cmp2;
+var head1,head2;
+var nrec;
+
+var numQuestion;
+var totalSize;
+var finishSize;
+var finishFlag;
+
+//The initialization of the variable+++++++++++++++++++++++++++++++++++++++++++++
+function initList(){
+	var n = 0;
+	var mid;
+	var i;
+
+	//The sequence that you should sort
+	lstMember[n] = new Array();
+	for (i=0; i<namMember.length; i++) {
+		lstMember[n][i] = i;
+	}
+	parent[n] = -1;
+	totalSize = 0;
+	n++;
+
+	for (i=0; i<lstMember.length; i++) {
+		//And element divides it in two/more than two
+		//Increase divided sequence of last in first member
+		if(lstMember[i].length>=2) {
+			mid = Math.ceil(lstMember[i].length/2);
+			lstMember[n] = new Array();
+			lstMember[n] = lstMember[i].slice(0,mid);
+			totalSize += lstMember[n].length;
+			parent[n] = i;
+			n++;
+			lstMember[n] = new Array();
+			lstMember[n] = lstMember[i].slice(mid,lstMember[i].length);
+			totalSize += lstMember[n].length;
+			parent[n] = i;
+			n++;
+		}
+	}
+
+	//Preserve this sequence
+	for (i=0; i<namMember.length; i++) {
+		rec[i] = 0;
+	}
+	nrec = 0;
+
+	//List that keeps your results
+	//Value of link initial
+	// Value of link initial
+	for (i=0; i<=namMember.length; i++) {
+		equal[i] = -1;
+	}
+
+	cmp1 = lstMember.length-2;
+	cmp2 = lstMember.length-1;
+	head1 = 0;
+	head2 = 0;
+	numQuestion = 1;
+	finishSize = 0;
+	finishFlag = 0;
+}
+
+//&#12522;&#12473;&#12488;&#12398;&#12477;&#12540;&#12488;+++++++++++++++++++++++++++++++++++++++++++
+//flag&#65306;Don't know characters
+//  -1&#65306;Chose the left
+//   0&#65306;Tie
+//   1&#65306;Chose the right
+function sortList(flag){
+	var i;
+	var str;
+
+	//rec preservation
+	if (flag<0) {
+		rec[nrec] = lstMember[cmp1][head1];
+		head1++;
+		nrec++;
+		finishSize++;
+		while (equal[rec[nrec-1]]!=-1) {
+			rec[nrec] = lstMember[cmp1][head1];
+			head1++;
+			nrec++;
+			finishSize++;
+		}
+	}
+	else if (flag>0) {
+		rec[nrec] = lstMember[cmp2][head2];
+		head2++;
+		nrec++;
+		finishSize++;
+		while (equal[rec[nrec-1]]!=-1) {
+			rec[nrec] = lstMember[cmp2][head2];
+			head2++;
+			nrec++;
+			finishSize++;
+		}
+	}
+	else {
+		rec[nrec] = lstMember[cmp1][head1];
+		head1++;
+		nrec++;
+		finishSize++;
+		while (equal[rec[nrec-1]]!=-1) {
+			rec[nrec] = lstMember[cmp1][head1];
+			head1++;
+			nrec++;
+			finishSize++;
+		}
+		equal[rec[nrec-1]] = lstMember[cmp2][head2];
+		rec[nrec] = lstMember[cmp2][head2];
+		head2++;
+		nrec++;
+		finishSize++;
+		while (equal[rec[nrec-1]]!=-1) {
+			rec[nrec] = lstMember[cmp2][head2];
+			head2++;
+			nrec++;
+			finishSize++;
+		}
+	}
+
+	//Processing after finishing with one list
+	if (head1<lstMember[cmp1].length && head2==lstMember[cmp2].length) {
+		//List the remainder of cmp2 copies, list cmp1 copies when finished scanning
+		while (head1<lstMember[cmp1].length){
+			rec[nrec] = lstMember[cmp1][head1];
+			head1++;
+			nrec++;
+			finishSize++;
+		}
+	}
+	else if (head1==lstMember[cmp1].length && head2<lstMember[cmp2].length) {
+		//List the remainder of cmp1 copies, list cmp2 copies when finished scanning
+		while (head2<lstMember[cmp2].length){
+			rec[nrec] = lstMember[cmp2][head2];
+			head2++;
+			nrec++;
+			finishSize++;
+		}
+	}
+
+	//When it arrives at the end of both lists
+	//Update a pro list
+	if (head1==lstMember[cmp1].length && head2==lstMember[cmp2].length) {
+		for (i=0; i<lstMember[cmp1].length+lstMember[cmp2].length; i++) {
+			lstMember[parent[cmp1]][i] = rec[i];
+		}
+		lstMember.pop();
+		lstMember.pop();
+		cmp1 = cmp1-2;
+		cmp2 = cmp2-2;
+		head1 = 0;
+		head2 = 0;
+
+		//Initialize the rec before performing the new comparison
+		if (head1==0 && head2==0) {
+			for (i=0; i<namMember.length; i++) {
+				rec[i] = 0;
+			}
+			nrec = 0;
+		}
+	}
+
+	if (cmp1<0) {
+		str = "Battle No."+(numQuestion-1)+"<br>"+Math.floor(finishSize*100/totalSize)+"% sorted.";
+		document.getElementById("battleNumber").innerHTML = str;
+
+		showResult();
+		finishFlag = 1;
+	}
+	else {
+		showImage();
+	}
+}
+
+//The results+++++++++++++++++++++++++++++++++++++++++++++++
+//&#38918;&#20301;=Rank/Grade/Position/Standing/Status
+//&#21517;&#21069;=Identification term
+function showResult() {
+	var ranking = 1;
+	var sameRank = 1;
+	var str = "";
+	var i;
+
+	str += "<table style=\"width:200px; font-size:12px; line-height:120%; margin-left:auto; margin-right:auto; border:1px solid #000; border-collapse:collapse\" align=\"center\">";
+	str += "<tr><td style=\"color:#ffffff; background-color:#000; text-align:center;\">Rank<\/td><td style=\"color:#ffffff; background-color:#000; text-align:center;\">Character<\/td><\/tr>";
+
+	for (i=0; i<namMember.length; i++) {
+		str += "<tr><td style=\"border:1px solid #000; text-align:right; padding-right:5px;\">"+ranking+"<\/td><td style=\"border:1px solid #000; padding-left:5px;\">"+namMember[lstMember[0][i]]+"<\/td><\/tr>";
+		if (i<namMember.length-1) {
+			if (equal[lstMember[0][i]]==lstMember[0][i+1]) {
+				sameRank++;
+			} else {
+				ranking += sameRank;
+				sameRank = 1;
+			}
+		}
+	}
+	str += "<\/table>";
+
+	document.getElementById("resultField").innerHTML = str;
+}
+
+//Indicates two elements to compare+++++++++++++++++++++++++++++++++++
+function showImage() {
+	var str0 = "Battle No."+numQuestion+"<br>"+Math.floor(finishSize*100/totalSize)+"% sorted.";
+	var str1 = ""+toNameFace(lstMember[cmp1][head1]);
+	var str2 = ""+toNameFace(lstMember[cmp2][head2]);
+
+	document.getElementById("battleNumber").innerHTML = str0;
+	document.getElementById("leftField").innerHTML = str1;
+	document.getElementById("rightField").innerHTML = str2;
+
+	numQuestion++;
+}
+
+//Convert numeric value into a name (emoticon)+++++++++++++++++++++++++++++++
+function toNameFace(n){
+	var str = namMember[n];
+
+	/*
+	str += '<br />';
+	switch(n) {
+		//case -1 Because it is a sample, delete it
+		case -1: str+=""; break;
+	}*/
+	return str;
+}
+</script>
+<style type="text/css">
+#mainTable{
+	font-size: 16px;
+	font-family: 'MS PGothic',sans-serif;
+	text-align: center;
+	vertical-align: middle;
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: separate;
+	border-spacing: 10px 5px;
+}
+#leftField,
+#rightField {
+	width: 200px;
+	height: 150px;
+	border: 1px solid #000;
+	cursor: pointer;
+}
+.middleField{
+	width: 120px;
+	height: 70px;
+	border: 1px solid #000;
+	cursor: pointer;
+}
+a{
+	color: #174;
+	text-decoration : none;
+}
+a:hover{
+	color: #6b9;
+}
+body {
+	width: 600px;
+	margin: 0 auto;
+}
+</style>
+</head>
+<body>
+<table id="mainTable" align="center">
+	<tbody><tr>
+		<td id="battleNumber" colspan="3" style="padding-bottom: 10px;" style="text-align:center;">Battle No.1<br>0% sorted.</td>
+	</tr>
+	<tr>
+		<td id="leftField" onclick="if(finishFlag==0) sortList(-1);" rowspan="2" style="text-align:center;"></td>
+		<td class="middleField" onclick="if(finishFlag==0) sortList(0);" style="text-align:center;">
+			I Like Both
+		</td>
+		<td id="rightField" onclick="if(finishFlag==0) sortList(1);" rowspan="2" style="text-align:center;"></td>
+	</tr>
+	<tr>
+		<td class="middleField" onclick="if(finishFlag==0) sortList(0);" style="text-align:center;">
+			No Opinion
+		</td>
+	</tr>
+</tbody></table>
+<br><br>
+<div id="resultField" style="text-align: center;">
+<br><br>
+</div>
+<script type="text/javascript">
+	initList();
+	showImage();
+</script>
+</body>
+</html>
